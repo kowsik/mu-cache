@@ -1,5 +1,5 @@
 ## Mu::Cache
-A simple in-memory, timed and size-limited cache that you can use in Sinatra 
+A simple in-memory, time and size-limited cache that you can use in Sinatra 
 apps to minimize calls to CouchDB where appropriate. Since it acts like a Hash, 
 you can also do timed caches of HAML fragments (like refreshing a scoreboard). This is
 very different from [Rack::Cache](http://tomayko.com/writings/rack-cache-announce) 
@@ -38,6 +38,7 @@ For example:
 
     get '/scoreboard' do
         Application.cache.fetch 'scoreboard', false do
+            # At least 30 seconds has to elapse before this is called
             haml :scoreboard
         end
     end
